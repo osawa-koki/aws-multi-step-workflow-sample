@@ -3,9 +3,6 @@
 version = 0.1
 
 [default]
-[default.global.parameters]
-stack_name = "aws-multi-step-workflow-sample"
-
 [default.build.parameters]
 cached = true
 parallel = true
@@ -15,7 +12,8 @@ lint = true
 
 [default.deploy.parameters]
 capabilities = "CAPABILITY_IAM"
-confirm_changeset = true
+confirm_changeset = false
+fail_on_empty_changeset = false
 resolve_s3 = true
 
 [default.package.parameters]
