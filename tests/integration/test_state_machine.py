@@ -130,8 +130,7 @@ class TestStateMachine(TestCase):
         record_transaction_entered_events = [
             event
             for event in events
-            if event["type"] == "TaskStateEntered"
-            and event["stateEnteredEventDetails"]["name"] == "Record Transaction"
+            if event["type"] == "TaskStateEntered" and event["stateEnteredEventDetails"]["name"] == "Record Transaction"
         ]
         self.assertTrue(
             record_transaction_entered_events,
