@@ -16,7 +16,7 @@ Resources:
   StockTradingStateMachine:
     Type: AWS::Serverless::StateMachine # More info about State Machine Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-statemachine.html
     Properties:
-      Name: !Sub ${AWS::StackName}-stoc-trading-state-machine
+      Name: !Sub ${AWS::StackName}-state-machine
       DefinitionUri: statemachine/stock_trader.asl.json
       DefinitionSubstitutions:
         StockCheckerFunctionArn: !GetAtt StockCheckerFunction.Arn
