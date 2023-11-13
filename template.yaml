@@ -16,6 +16,7 @@ Resources:
   StockTradingStateMachine:
     Type: AWS::Serverless::StateMachine # More info about State Machine Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-statemachine.html
     Properties:
+      Name: !Sub ${AWS::StackName}-stoc-trading-state-machine
       DefinitionUri: statemachine/stock_trader.asl.json
       DefinitionSubstitutions:
         StockCheckerFunctionArn: !GetAtt StockCheckerFunction.Arn
@@ -43,6 +44,8 @@ Resources:
   StockCheckerFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
     Properties:
+      FunctionName: !Sub ${AWS::StackName}-stock-checker
+      Description: Checks the stock price for a given stock symbol.
       CodeUri: functions/stock_checker/
       Handler: app.lambda_handler
       Runtime: python3.10
@@ -52,6 +55,8 @@ Resources:
   StockSellerFunction:
     Type: AWS::Serverless::Function
     Properties:
+      FunctionName: !Sub ${AWS::StackName}-stock-seller
+      Description: Sells the stock for a given stock symbol.
       CodeUri: functions/stock_seller/
       Handler: app.lambda_handler
       Runtime: python3.10
@@ -61,6 +66,8 @@ Resources:
   StockBuyerFunction:
     Type: AWS::Serverless::Function
     Properties:
+      FunctionName: !Sub ${AWS::StackName}-stock-buyer
+      Description: Buys the stock for a given stock symbol.
       CodeUri: functions/stock_buyer/
       Handler: app.lambda_handler
       Runtime: python3.10
@@ -70,6 +77,7 @@ Resources:
   TransactionTable:
     Type: AWS::Serverless::SimpleTable # More info about SimpleTable Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-simpletable.html
     Properties:
+      TableName: !Sub ${AWS::StackName}-transaction-table
       PrimaryKey:
         Name: Id
         Type: String
