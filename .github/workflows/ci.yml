@@ -23,7 +23,7 @@ jobs:
       env:
         AWS_SAM_STACK_NAME: ${{ secrets.PROJECT_NAME }}
     - name: flake8 linting
-      run: python -m flake8 ./functions/ ./tests/
+      run: python -m flake8 --ignore=E501 ./functions/ ./tests/
     - name: black formatting check
       run: python -m black --check ./functions/ ./tests/
     - name: isort formatting check
